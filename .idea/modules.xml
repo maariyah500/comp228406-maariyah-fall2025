@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab1/Maariyah_COMP228Lab1.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab1/Maariyah_COMP228Lab1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab2/Maariyah_COMP228Lab2.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab2/Maariyah_COMP228Lab2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab3/Maariyah_COMP228Lab3.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab3/Maariyah_COMP228Lab3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab4/Maariyah_COMP228Lab4.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab4/Maariyah_COMP228Lab4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab5/Maariyah_COMP228Lab5.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab5/Maariyah_COMP228Lab5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab6/Maariyah_COMP228Lab6.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab6/Maariyah_COMP228Lab6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab7/Maariyah_COMP228Lab7.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab7/Maariyah_COMP228Lab7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/comp228406-maariyah-fall2025.iml" filepath="$PROJECT_DIR$/.idea/comp228406-maariyah-fall2025.iml" />
+    </modules>
+  </component>
+</project>
