@@ -1,4 +1,4 @@
-package ex1;
+package exercise1;
 
 public class Driver {
 
