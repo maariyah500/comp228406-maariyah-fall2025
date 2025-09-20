@@ -24,7 +24,7 @@ public class Driver {
         singer1.setSingerName("Mohammed Zakee Shaikh");
         singer1.setSingerAddress("3555 W12 St");
         singer1.setDateOfBirth("October 18, 1991");
-        singer1.setAlbumsPublished(moreAlbums);
+        singer1.setAlbumsReleased(moreAlbums);
 
         System.out.println("\nValues After Individual Changes...");
         displaySingerDetails(singer1);
@@ -35,7 +35,7 @@ public class Driver {
         System.out.println("Singer Name: " + singer.getSingerName());
         System.out.println("Singer Address: " + singer.getSingerAddress());
         System.out.println("Date of Birth: " + singer.getDateOfBirth());
-        System.out.println("Albums Published: " + singer.getAlbumsPublished() + "\n");
+        System.out.println("Albums Published: " + singer.getAlbumsReleased() + "\n");
     }
 }
 
@@ -61,7 +61,7 @@ class Singers {
         this.singerID = id;
         this.singerName = name;
         this.singerAddress = address;
-        this.singerDOB = singerDOB;
+        this.singerDOB = dob;
         this.albumRelease = albums;
     }
 
@@ -97,11 +97,11 @@ class Singers {
         this.singerDOB = dob;
     }
 
-    public int getAlbumsPublished() {
+    public int getAlbumsReleased() {
         return this.albumRelease;
     }
 
-    public void setAlbumsPublished(int albums) {
+    public void setAlbumsReleased(int albums) {
         this.albumRelease = albums;
     }
 
