@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MaariyahShaikh_COMP228Lab2/MaariyahShaikh_COMP228Lab2.iml" filepath="$PROJECT_DIR$/MaariyahShaikh_COMP228Lab2/MaariyahShaikh_COMP228Lab2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab1/Maariyah_COMP228Lab1.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab1/Maariyah_COMP228Lab1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab2/Maariyah_COMP228Lab2.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab2/Maariyah_COMP228Lab2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Maariyah_COMP228Lab3/Maariyah_COMP228Lab3.iml" filepath="$PROJECT_DIR$/Maariyah_COMP228Lab3/Maariyah_COMP228Lab3.iml" />
