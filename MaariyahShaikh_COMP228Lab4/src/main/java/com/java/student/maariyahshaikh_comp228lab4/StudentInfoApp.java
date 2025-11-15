@@ -1,156 +1,145 @@
 package com.java.student.maariyahshaikh_comp228lab4;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.util.HashSet;
 
 public class StudentInfoApp extends Application {
+    private TextField nameField, addressField, cityField, provinceField, postalCodeField, phoneNumberField, emailField;
+    private RadioButton radioButton1, radioButton2;
+    private ComboBox<String> courseComboBox;
+    private ListView<String> courseListView;
+    private CheckBox activity1CheckBox, activity2CheckBox;
+    private TextArea resultTextArea;
+    private ObservableList<String> courses1, courses2;
+    private HashSet<String> selectedCourses;
 
-    @Override
     public void start(Stage primaryStage) {
+        primaryStage.setTitle("Student Information Application");
 
-        TextField txtName = new TextField();
-        TextField txtAddress = new TextField();
-        TextField txtCity = new TextField();
-        TextField txtProvince = new TextField();
-        TextField txtPostal = new TextField();
-        TextField txtPhone = new TextField();
-        TextField txtEmail = new TextField();
+        nameField = new TextField();
+        addressField = new TextField();
+        cityField = new TextField();
+        provinceField = new TextField();
+        postalCodeField = new TextField();
+        phoneNumberField = new TextField();
+        emailField = new TextField();
 
-        RadioButton rbCS = new RadioButton("Computer Science");
-        RadioButton rbBus = new RadioButton("Business");
-        ToggleGroup majorGroup = new ToggleGroup();
-        rbCS.setToggleGroup(majorGroup);
-        rbBus.setToggleGroup(majorGroup);
+        ToggleGroup majorToggleGroup = new ToggleGroup();
+        radioButton1 = new RadioButton("Software Engineering");
+        radioButton2 = new RadioButton("Business");
+        radioButton1.setToggleGroup(majorToggleGroup);
+        radioButton2.setToggleGroup(majorToggleGroup);
 
-        ComboBox<String> cboCourses = new ComboBox<>();
-        ListView<String> listCourses = new ListView<>();
+        courseComboBox = new ComboBox<>();
+        courseListView = new ListView<>();
+        selectedCourses = new HashSet<>();
+        courses1 = FXCollections.observableArrayList("Databases", "Java", "C#", "Software Systems");
+        courses2 = FXCollections.observableArrayList("Business 101", "Marketing Strategies", "Applied Mathematics", "Financial Literacy");
 
-        rbCS.setOnAction(e -> {
-            cboCourses.getItems().setAll(
-                    "Intro to Programming",
-                    "Data Structures",
-                    "Databases",
-                    "Operating Systems",
-                    "Networks"
-            );
-            cboCourses.getSelectionModel().clearSelection();
+        radioButton1.setOnAction(e -> {
+            courseComboBox.setItems(courses1);
+            courseComboBox.getSelectionModel().clearSelection();
+        });
+        radioButton2.setOnAction(e -> {
+            courseComboBox.setItems(courses2);
+            courseComboBox.getSelectionModel().clearSelection();
         });
 
-        rbBus.setOnAction(e -> {
-            cboCourses.getItems().setAll(
-                    "Accounting I",
-                    "Marketing",
-                    "Economics",
-                    "Business Law",
-                    "Management"
-            );
-            cboCourses.getSelectionModel().clearSelection();
-        });
+        Button addCourseButton = new Button("Add Course");
+        addCourseButton.setOnAction(e -> addCourse());
 
-        cboCourses.setOnAction(e -> {
-            String selected = cboCourses.getValue();
-            if (selected != null && !listCourses.getItems().contains(selected)) {
-                listCourses.getItems().add(selected);
-            }
-        });
+        activity1CheckBox = new CheckBox("Student Council");
+        activity2CheckBox = new CheckBox("Volunteer Work");
 
-        CheckBox chkSports = new CheckBox("Sports");
-        CheckBox chkVolunteer = new CheckBox("Volunteer Work");
-        CheckBox chkMusic = new CheckBox("Music Club");
+        resultTextArea = new TextArea();
+        resultTextArea.setPrefHeight(150);
 
-        TextArea txtOutput = new TextArea();
-        txtOutput.setPrefRowCount(10);
+        Button submitButton = new Button("Submit");
+        submitButton.setOnAction(e -> displayStudentInformation());
 
-        Button btnDisplay = new Button("Display Student Information");
+        GridPane inputPane = new GridPane();
+        inputPane.setPadding(new Insets(10));
+        inputPane.setHgap(10);
+        inputPane.setVgap(10);
 
-        btnDisplay.setOnAction(e -> {
-            StringBuilder sb = new StringBuilder();
+        inputPane.add(new Label("Full Name:"), 0, 0);
+        inputPane.add(nameField, 1, 0);
 
-            sb.append("STUDENT INFORMATION\n\n");
-            sb.append("Name: ").append(txtName.getText()).append("\n");
-            sb.append("Address: ").append(txtAddress.getText()).append("\n");
-            sb.append("City: ").append(txtCity.getText()).append("\n");
-            sb.append("Province: ").append(txtProvince.getText()).append("\n");
-            sb.append("Postal Code: ").append(txtPostal.getText()).append("\n");
-            sb.append("Phone: ").append(txtPhone.getText()).append("\n");
-            sb.append("Email: ").append(txtEmail.getText()).append("\n");
+        inputPane.add(new Label("Address:"), 0, 1);
+        inputPane.add(addressField, 1, 1);
 
-            sb.append("\nMajor: ");
-            if (rbCS.isSelected()) sb.append("Computer Science");
-            else if (rbBus.isSelected()) sb.append("Business");
+        inputPane.add(new Label("City:"), 0, 2);
+        inputPane.add(cityField, 1, 2);
 
-            sb.append("\n\nCourses:\n");
-            for (String c : listCourses.getItems()) {
-                sb.append(" - ").append(c).append("\n");
-            }
+        inputPane.add(new Label("Province:"), 0, 3);
+        inputPane.add(provinceField, 1, 3);
 
-            sb.append("\nActivities: ");
-            if (chkSports.isSelected()) sb.append("Sports ");
-            if (chkVolunteer.isSelected()) sb.append("Volunteer ");
-            if (chkMusic.isSelected()) sb.append("Music ");
+        inputPane.add(new Label("Postal Code:"), 0, 4);
+        inputPane.add(postalCodeField, 1, 4);
 
-            txtOutput.setText(sb.toString());
-        });
+        inputPane.add(new Label("Phone Number:"), 0, 5);
+        inputPane.add(phoneNumberField, 1, 5);
 
-        GridPane formGrid = new GridPane();
-        formGrid.setPadding(new Insets(10));
-        formGrid.setHgap(10);
-        formGrid.setVgap(10);
+        inputPane.add(new Label("Email:"), 0, 6);
+        inputPane.add(emailField, 1, 6);
 
-        formGrid.add(new Label("Full Name:"), 0, 0);
-        formGrid.add(txtName, 1, 0);
-        formGrid.add(new Label("Address:"), 0, 1);
-        formGrid.add(txtAddress, 1, 1);
-        formGrid.add(new Label("City:"), 0, 2);
-        formGrid.add(txtCity, 1, 2);
-        formGrid.add(new Label("Province:"), 0, 3);
-        formGrid.add(txtProvince, 1, 3);
-        formGrid.add(new Label("Postal Code:"), 0, 4);
-        formGrid.add(txtPostal, 1, 4);
-        formGrid.add(new Label("Phone:"), 0, 5);
-        formGrid.add(txtPhone, 1, 5);
-        formGrid.add(new Label("Email:"), 0, 6);
-        formGrid.add(txtEmail, 1, 6);
+        VBox majorPane = new VBox(10, radioButton1, radioButton2, courseComboBox, addCourseButton);
+        majorPane.setPadding(new Insets(10));
 
-        FlowPane majorPane = new FlowPane(10, 10, rbCS, rbBus);
-        formGrid.add(new Label("Major:"), 0, 7);
-        formGrid.add(majorPane, 1, 7);
+        VBox additionalInfoPane = new VBox(10, activity1CheckBox, activity2CheckBox);
+        additionalInfoPane.setPadding(new Insets(10));
 
-        VBox courseBox = new VBox(10,
-                new Label("Select Course:"),
-                cboCourses,
-                new Label("Courses Added:"),
-                listCourses
-        );
-        courseBox.setPadding(new Insets(10));
+        BorderPane mainPane = new BorderPane();
+        mainPane.setPadding(new Insets(10));
+        mainPane.setTop(inputPane);
+        mainPane.setLeft(majorPane);
+        mainPane.setRight(additionalInfoPane);
+        mainPane.setCenter(courseListView);
+        mainPane.setBottom(new VBox(10, submitButton, resultTextArea));
 
-        VBox activitiesBox = new VBox(10,
-                new Label("Activities:"),
-                chkSports,
-                chkVolunteer,
-                chkMusic
-        );
-        activitiesBox.setPadding(new Insets(10));
-
-        VBox bottomBox = new VBox(10, btnDisplay, txtOutput);
-        bottomBox.setPadding(new Insets(10));
-
-        BorderPane root = new BorderPane();
-        root.setLeft(formGrid);
-        root.setCenter(courseBox);
-        root.setRight(activitiesBox);
-        root.setBottom(bottomBox);
-
-        Scene scene = new Scene(root, 900, 600);
-        primaryStage.setTitle("Student Information System");
+        Scene scene = new Scene(mainPane, 500, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void addCourse() {
+        String selectedCourse = courseComboBox.getValue();
+        if (selectedCourse != null && !selectedCourses.contains(selectedCourse)) {
+            selectedCourses.add(selectedCourse);
+            courseListView.getItems().add(selectedCourse);
+        }
+    }
+
+    private void displayStudentInformation() {
+        StringBuilder studentInfo = new StringBuilder();
+
+        studentInfo.append("Name: ").append(nameField.getText()).append("\n")
+                .append("Address: ").append(addressField.getText()).append("\n")
+                .append("City: ").append(cityField.getText()).append("\n")
+                .append("Province: ").append(provinceField.getText()).append("\n")
+                .append("Postal Code: ").append(postalCodeField.getText()).append("\n")
+                .append("Phone Number: ").append(phoneNumberField.getText()).append("\n")
+                .append("Email: ").append(emailField.getText()).append("\n");
+
+        String major = radioButton1.isSelected() ? "Software Engineering" : radioButton2.isSelected() ? "Business" : "Not Selected";
+        studentInfo.append("Major: ").append(major).append("\n");
+
+        studentInfo.append("Courses: ").append(courseListView.getItems()).append("\n");
+
+        studentInfo.append("Activities: ");
+        if (activity1CheckBox.isSelected()) studentInfo.append("Student Council");
+        if (activity2CheckBox.isSelected()) studentInfo.append("Volunteer Work");
+
+        resultTextArea.setText(studentInfo.toString());
     }
 
     public static void main(String[] args) {
