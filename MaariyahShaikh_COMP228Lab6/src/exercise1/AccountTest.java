@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class AccountTest {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         Account sharedAccount = new Account(1000.0);
 
         ArrayList<Runnable> transactions = new ArrayList<>();
